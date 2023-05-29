@@ -1,0 +1,4 @@
+val text = sc.textFile("input1.txt")
+val counts = text.flatMap(lin => line.split(" "))
+val mapf = counts.map(word => (word,1))
+val reducef = mapf.reduceByKey(_+_)

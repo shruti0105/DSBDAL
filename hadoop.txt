@@ -1,0 +1,27 @@
+//create a text file in home directory using gedit.
+hdfs dfs -mkdir /input
+hdfs dfs -put /home/hadoop/Desktop/data.txt /input
+hdfs dfs -ls /input/
+//hdfs dfs -put ~/example.txt /user/your_username/
+//hdfs dfs -ls /user/your_username/
+
+yarn jar {jar path} wordcount <input file ka path in hdfs> <outpit file ka path>
+
+//yarn jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-<version>.jar wordcount /user/your_username/input.txt /user/your_username/wordcount_output
+
+hdfs dfs -cat /output/part-r-00000
+
+final:-
+
+jps
+start -dfs.sh
+start -yarn.sh
+jps
+hdfs dfs -mkdir /input
+hdfs dfs -put /home/hadoop/Desktop/data.txt /input
+hdfs dfs -ls /input/
+yarn jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-<version>.jar wordcount /input /output
+hdfs dfs -cat /output/* or hdfs dfs -cat /output/part-r-00000
+stop -yarn.sh
+stop -dfs.sh
+
